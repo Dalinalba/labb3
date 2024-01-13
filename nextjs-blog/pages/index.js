@@ -41,10 +41,32 @@ const Home = ({ newsData }) => {
         <CategoryMenu />
         <div>
         <Link href="/category/sports">
-          Go to Sports Category
+          Sports
+        </Link>
+        <br/>
+        <Link href="/category/business">
+           business
+        </Link>
+        <br/>
+        <Link href="/category/science">
+          science
         </Link>
         <br />
+        {/* Add link to country page */}
+        <div>
+            <h2>choose news country</h2>
+          <Link href="/country/us">
+            Go to US News
+          </Link>
+          <br/>
+          <Link href="/country/gb">
+            Go to GB News
+          </Link>
+
+        </div>
       </div>
+      <br/>
+      <h2>search news </h2>
         <SearchBar onSearch={handleSearch} />
         <NewsList newsData={filteredNews} />
         <Sidebar/>
