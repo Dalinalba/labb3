@@ -1,5 +1,6 @@
 
 import React from 'react';
+import NewsItem from './NewsItem';
 
 const NewsList = ({ newsData }) => {
   return (
@@ -9,8 +10,7 @@ const NewsList = ({ newsData }) => {
         {newsData.map((article) => (
           <li key={article.id}>
             <img src={article.urlToImage} alt={article.title} />
-            <h3>{article.title}</h3>
-            <p>{article.description}</p>
+            <NewsItem article={article} />
           </li>
         ))}
       </ul>
