@@ -7,6 +7,7 @@ import CategoryMenu from '../components/CategoryMenu';
 import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import Sidebar from '../components/Sidebar';
+import AdBanner from '../components/AdBanner';
 
 
 const apiUrl = 'https://newsapi.org/v2/top-headlines';
@@ -33,6 +34,7 @@ const Home = ({ newsData }) => {
   return (
     <div>
       <Header />
+      <AdBanner/>
       <main>
         <Hero />
         <CategoryMenu />
