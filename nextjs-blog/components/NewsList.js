@@ -8,7 +8,7 @@ const NewsList = ({ newsData }) => {
       <ul>
         {newsData.map((article) => (
           <li key={article.id}>
-            <img src={article.image} alt={article.title} />
+            <img src={article.urlToImage} alt={article.title} />
             <h3>{article.title}</h3>
             <p>{article.description}</p>
           </li>
