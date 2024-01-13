@@ -1,5 +1,6 @@
 // pages/index.js
 import React, { useState } from 'react';
+import Link from 'next/link';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
 import NewsList from '../components/NewsList';
@@ -38,6 +39,12 @@ const Home = ({ newsData }) => {
       <main>
         <Hero />
         <CategoryMenu />
+        <div>
+        <Link href="/category/sports">
+          Go to Sports Category
+        </Link>
+        <br />
+      </div>
         <SearchBar onSearch={handleSearch} />
         <NewsList newsData={filteredNews} />
         <Sidebar/>
