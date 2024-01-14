@@ -1,4 +1,4 @@
-// src/app/components/SocialMediaShare.js
+//components/SocialMediaShare.js
 import React from 'react';
 
 const SocialMediaShare = ({ articleTitle, articleUrl }) => {

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import CommentSection from './CommentSection';
 import NewsItem from './NewsItem';
 
 const NewsList = ({ newsData }) => {
@@ -11,6 +12,7 @@ const NewsList = ({ newsData }) => {
           <li key={article.id}>
             <img src={article.urlToImage} alt={article.title} />
             <NewsItem article={article} />
+            <CommentSection/>
           </li>
         ))}
       </ul>

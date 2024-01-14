@@ -1,7 +1,7 @@
 // pages/country/[country].test.js
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Country from './[country]';
+import Country from '../../pages/country/[country]';
 
 describe('Country Page', () => {
   it('renders the component', () => {
