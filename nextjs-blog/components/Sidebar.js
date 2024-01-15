@@ -1,53 +1,71 @@
-// src/app/components/Sidebar.js
+// components/Sidebar.js
 import React, { useState, useEffect } from 'react';
+import styles from '../styles/Sidebar.module.css';
 
 const Sidebar = () => {
-  const [relatedLinks, setRelatedLinks] = useState([]);
-  const [popularArticles, setPopularArticles] = useState([]);
+  const [bitcoinArticles, setBitcoinArticles] = useState([]);
+  const [goldArticles, setGoldArticles] = useState([]);
+  const [weatherArticles, setWeatherArticles] = useState([]);
 
   useEffect(() => {
-    // Simulate fetching related links
-    const fetchRelatedLinks = async () => {
-      // Replace the following line with your actual logic to fetch related links
-      const fetchedLinks = await fetchRelatedLinksFromAPI();
-      setRelatedLinks(fetchedLinks);
+    // Fetch popular articles
+    const fetchPopularArticles = async (category) => {
+      try {
+        const fetchedArticles = await fetchNewsArticles(category);
+        switch (category) {
+          case 'bitcoin':
+            setBitcoinArticles(fetchedArticles);
+            break;
+          case 'gold':
+            setGoldArticles(fetchedArticles);
+            break;
+          case 'weather':
+            setWeatherArticles(fetchedArticles);
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.error(`Error fetching ${category} articles:`, error);
+      }
     };
 
-    // Simulate fetching popular articles
-    const fetchPopularArticles = async () => {
-      // Replace the following line with your actual logic to fetch popular articles
-      const fetchedArticles = await fetchPopularArticlesFromAPI();
-      setPopularArticles(fetchedArticles);
-    };
-
-    fetchRelatedLinks();
-    fetchPopularArticles();
+    fetchPopularArticles('bitcoin');
+    fetchPopularArticles('gold');
+    fetchPopularArticles('weather');
   }, []);
 
-  // Placeholder function to simulate fetching related links
-  const fetchRelatedLinksFromAPI = async () => {
-    // Replace this with your actual logic to fetch related links
-    return ['Link 1', 'Link 2', 'Link 3'];
-  };
+  // Function to fetch popular articles
+  const fetchNewsArticles = async (category) => {
+    const apiKey = 'ff0cfc91f89c46b5ad77934c678704ed';
+    const apiUrl = `https://newsapi.org/v2/top-headlines?q=${category}&apiKey=${apiKey}`;
 
-  // Placeholder function to simulate fetching popular articles
-  const fetchPopularArticlesFromAPI = async () => {
-    // Replace this with your actual logic to fetch popular articles
-    return ['Article 1', 'Article 2', 'Article 3'];
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // Extract article titles
+    return data.articles.map((article) => article.title);
   };
 
   return (
-    <aside className="sidebar">
-      <h2>Related Links</h2>
+    <aside className={styles.sidebar}>
+      <h2>Bitcoin Popular Articles</h2>
       <ul>
-        {relatedLinks.map((link, index) => (
-          <li key={index}><a href="#">{link}</a></li>
+        {bitcoinArticles.map((article, index) => (
+          <li key={index}><a href="#">{article}</a></li>
         ))}
       </ul>
 
-      <h2>Popular Articles</h2>
+      <h2>Gold Popular Articles</h2>
       <ul>
-        {popularArticles.map((article, index) => (
+        {goldArticles.map((article, index) => (
+          <li key={index}><a href="#">{article}</a></li>
+        ))}
+      </ul>
+
+      <h2>Weather Popular Articles</h2>
+      <ul>
+        {weatherArticles.map((article, index) => (
           <li key={index}><a href="#">{article}</a></li>
         ))}
       </ul>

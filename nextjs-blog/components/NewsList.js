@@ -1,9 +1,13 @@
 
 import React from 'react';
 import CommentSection from './CommentSection';
+import LoadingSpinner from './LoadingSpinner';
 import NewsItem from './NewsItem';
 
-const NewsList = ({ newsData }) => {
+const NewsList = ({ newsData, loading }) => {
+    if (loading) {
+        return <LoadingSpinner/>;
+      }
   return (
     <section className="news-list">
       <h2>Latest News</h2>
